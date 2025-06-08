@@ -1,0 +1,5 @@
+{
+  "name": "Token Minter Pro",
+  "description": "A web application to easily mint your own custom ERC20 tokens on Polygon or Mumbai testnet. Features wallet connection, token configuration (name, symbol, supply, decimals, image), and optional initial distribution settings.",
+  "requestFramePermissions": []
+}
