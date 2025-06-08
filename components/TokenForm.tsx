@@ -239,11 +239,11 @@ const TokenForm: React.FC = () => {
       }
       
       const TokenFactory = new ContractFactory(TOKEN_ABI, TOKEN_BYTECODE, finalSigner);
-      const contract = await TokenFactory.deploy(
-        formValues.name,
-        formValues.symbol,
-        ethers.parseUnits(formValues.supply, parseInt(formValues.decimals))
-      );
+     const contract = await TokenFactory.deploy(
+  formValues.name,      // トークン名
+  formValues.symbol,    // シンボル
+  BigInt(formValues.supply)   // ← 10¹⁸ 倍せず、そのまま枚数を渡す
+);
       
       const deployedContract: Contract = await contract.waitForDeployment();
       const contractAddress = await deployedContract.getAddress();
