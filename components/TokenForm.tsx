@@ -240,9 +240,12 @@ const TokenForm: React.FC = () => {
       
       const TokenFactory = new ContractFactory(TOKEN_ABI, TOKEN_BYTECODE, finalSigner);
      const contract = await TokenFactory.deploy(
-  formValues.name,      // トークン名
-  formValues.symbol,    // シンボル
-  BigInt(formValues.supply)   // ← 10¹⁸ 倍せず、そのまま枚数を渡す
+  formValues.name,              // トークン名
+  formValues.symbol,            // シンボル
+  ethers.parseUnits(            // 総発行量を10^decimals で整数化
+    formValues.supply,
+    parseInt(formValues.decimals)   // 例: 18
+  )
 );
       
       const deployedContract: Contract = await contract.waitForDeployment();
